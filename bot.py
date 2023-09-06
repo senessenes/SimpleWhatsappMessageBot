@@ -45,6 +45,13 @@ class Bot():
 
 wpbot=Bot("wpbotexcelfile.xlsx")
 wpbot.get_contacts()
+message=input("Type your message...")
+country_code=input("Country code of the phone numbers...")
+if "+" not in country_code:
+    raise Exception("Invalid country code")
+else:
+    wpbot.bot_message(message,country_code)
+
 
 
 
