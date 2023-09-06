@@ -22,10 +22,14 @@ class Bot():
         df=pd.read_excel(self.file_path)
         names=list(df["Names"])
         phone_numbers=list(df["Phone Numbers"])
-        if not(len(names)==len(phone_numbers)):
+        print(names)
+        print(phone_numbers)
+
+        if df.isnull().values.any():
             raise Exception("Missing Data")
-        for i in range(0,len(names)):
-            self.contacts.append(Contact(names[i],phone_numbers[i]))
+        else:
+            for i in range(0,len(names)):
+                self.contacts.append(Contact(names[i],phone_numbers[i]))
     def bot_message(self,message,country_code):
         win = Tk()
         screen_width = win.winfo_screenwidth()
@@ -40,10 +44,7 @@ class Bot():
 
 
 wpbot=Bot("wpbotexcelfile.xlsx")
-country_code=input("What is your country code?")
-message=input("What is the message you want to send?")
-wpbot.bot_message(message,country_code)
-
+wpbot.get_contacts()
 
 
 
